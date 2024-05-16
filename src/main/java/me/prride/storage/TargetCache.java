@@ -9,14 +9,14 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class TargetCache {
 	private static final File TARGETS_JSON = new File(Targeter.instance.getDataFolder().getAbsolutePath() + File.separator + "targets.json");
-	private static final Map<String, List<String>> TARGETS = new ConcurrentHashMap<>();
+	private static final Map<String, Set<String>> TARGETS = new ConcurrentHashMap<>();
 
 	public static void init() {
 		File dataFolder = Targeter.instance.getDataFolder();
@@ -40,7 +40,7 @@ public class TargetCache {
 
 		try {
 			Reader reader = new FileReader(TARGETS_JSON);
-			Map<String, List<String>> map = gson.fromJson(reader, Map.class);
+			Map<String, Set<String>> map = gson.fromJson(reader, Map.class);
 			System.out.println("Reading targets.json");
 
 			TARGETS.putAll(map);
@@ -56,17 +56,17 @@ public class TargetCache {
 			writer.close();
 		} catch (IOException e) { }
 	}
-	public static Map<String, List<String>> targets() {
+	public static Map<String, Set<String>> targets() {
 		return TARGETS;
 	}
 	public static void removeTargetsFromCache(String player, String entities) {
-		TARGETS.computeIfPresent(player, (plyr, list) -> { list.remove(entities); return list; });
+		TARGETS.computeIfPresent(player, (plyr, set) -> { set.remove(entities); return set; });
 	}
 	public static void addTargetsToCache(String player, String entities) {
 		if (TARGETS.containsKey(player)) {
 			TARGETS.get(player).add(entities);
 		} else {
-			List<String> list = new ArrayList<>();
+			Set<String> list = new HashSet<>();
 			list.add(entities);
 			TARGETS.put(player, list);
 		}

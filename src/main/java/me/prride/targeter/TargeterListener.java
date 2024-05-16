@@ -7,7 +7,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityTargetLivingEntityEvent;
 
-import java.util.List;
+import java.util.Set;
 
 public class TargeterListener implements Listener {
 
@@ -22,22 +22,20 @@ public class TargeterListener implements Listener {
 		Entity entity = event.getEntity();
 
 		if (TargetCache.targets().containsKey(player.getName())) {
-			List<String> targets = TargetCache.targets().get(player.getName());
+			Set<String> targets = TargetCache.targets().get(player.getName());
 
 			if (targets.isEmpty()) {
 				return;
 			} else {
-				for (String target : targets) {
-					if (target.equals("hostile")) {
-						for (String hostile : Targeter.getHostileEntities()) {
-							if (entity.getType().name().toLowerCase().equals(hostile)) {
-								event.setCancelled(true);
-							}
-						}
-					} else {
-						if (entity.getType().name().toLowerCase().equals(target)) {
+				if (targets.contains("hostile")) {
+					for (String hostile : Targeter.getHostileEntities()) {
+						if (entity.getType().name().toLowerCase().equals(hostile)) {
 							event.setCancelled(true);
 						}
+					}
+				} else {
+					if (targets.contains(entity.getType().name().toLowerCase())) {
+						event.setCancelled(true);
 					}
 				}
 			}
