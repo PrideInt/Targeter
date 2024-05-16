@@ -1,6 +1,8 @@
 # Targeter
 Gives you the ability to choose which entities target you.
 
+## Versions
+
 > [!NOTE]
 > Works for Minecraft Spigot version `1.20.4`. Recommended versions `1.17` and up.
 
@@ -22,3 +24,13 @@ Spiders in game target that user normally again.
 
 If you're too lazy to or you want to simulate a "peaceful" gamemode, you can also choose `hostile` when you're typing in the second parameter.
 This will make all hostile mobs no longer target the user.
+
+## Permissions
+
+```
+targeter.command.add
+```
+
+```
+targeter.command.remove
+```
