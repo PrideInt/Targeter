@@ -16,7 +16,6 @@ public class TargetAddCommand implements CommandExecutor, TabCompleter {
 		if (strings.length == 2) {
 			if (!TargetCache.targets().containsKey(strings[0])) {
 				TargetCache.addTargetsToCache(strings[0], strings[1]);
-				TargetCache.update();
 				commandSender.sendMessage("§aSuccessfully added " + strings[1] + " to " + strings[0] + "'s target list.");
 				return true;
 			} else if (TargetCache.targets().containsKey(strings[0]) && TargetCache.targets().get(strings[0]).contains(strings[1])) {
@@ -24,7 +23,6 @@ public class TargetAddCommand implements CommandExecutor, TabCompleter {
 				return true;
 			} else {
 				TargetCache.addTargetsToCache(strings[0], strings[1]);
-				TargetCache.update();
 				commandSender.sendMessage("§aSuccessfully added " + strings[1] + " to " + strings[0] + "'s target list.");
 				return true;
 			}

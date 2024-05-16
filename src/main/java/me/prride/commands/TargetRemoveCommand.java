@@ -22,7 +22,6 @@ public class TargetRemoveCommand implements CommandExecutor, TabCompleter {
 				return true;
 			} else {
 				TargetCache.removeTargetsFromCache(strings[0], strings[1]);
-				TargetCache.update();
 				commandSender.sendMessage("§aSuccessfully removed " + strings[1] + " from " + strings[0] + "'s target list.");
 				return true;
 			}

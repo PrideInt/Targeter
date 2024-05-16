@@ -35,6 +35,7 @@ public class Targeter extends JavaPlugin {
 	@Override
 	public void onDisable() {
 		HandlerList.unregisterAll(listener);
+		TargetCache.update();
 		getLogger().info("Targeter has been disabled!");
 	}
 
