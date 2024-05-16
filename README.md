@@ -1,6 +1,9 @@
 # Targeter
 Gives you the ability to choose which entities target you.
 
+> [!NOTE]
+> Works for Minecraft Spigot version `1.20.4`. Recommended versions `1.17` and up.
+
 ## Commands
 
 ### /targetadd
