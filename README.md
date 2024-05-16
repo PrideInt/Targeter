@@ -4,7 +4,7 @@ Gives you the ability to choose which entities target you.
 ## Versions
 
 > [!NOTE]
-> Works for Minecraft Spigot version `1.20.4`. Recommended versions `1.17` and up.
+> Works for Minecraft Spigot version `1.20.1`. Recommended versions `1.17` and up.
 
 ## Commands
 
